@@ -84,7 +84,7 @@ public class QRCodeReader implements Reader {
       ((QRCodeDecoderMetaData) decoderResult.getOther()).applyMirroredCorrection(points);
     }
 
-    Result result = new Result(decoderResult.getText(), decoderResult.getRawBytes(), points, BarcodeFormat.QR_CODE);
+    Result result = new Result(decoderResult.getText(), decoderResult.getRawBytes(), decoderResult.getByteSegments(), points, BarcodeFormat.QR_CODE);
     List<byte[]> byteSegments = decoderResult.getByteSegments();
     if (byteSegments != null) {
       result.putMetadata(ResultMetadataType.BYTE_SEGMENTS, byteSegments);

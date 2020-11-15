@@ -17,6 +17,7 @@
 package com.google.zxing;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,12 +34,27 @@ public final class Result {
   private final BarcodeFormat format;
   private Map<ResultMetadataType,Object> resultMetadata;
   private final long timestamp;
+  private List<byte[]> byteSegments;
 
   public Result(String text,
                 byte[] rawBytes,
                 ResultPoint[] resultPoints,
                 BarcodeFormat format) {
     this(text, rawBytes, resultPoints, format, System.currentTimeMillis());
+  }
+
+  public Result(String text,
+    byte[] rawBytes,
+    List<byte[]> byteSegments,
+    ResultPoint[] points,
+    BarcodeFormat qrCode) {
+    this.text = text;
+    this.rawBytes = rawBytes;
+    this.numBits = rawBytes == null ? 0 : 8 * rawBytes.length;
+    this.byteSegments = byteSegments;
+    this.format = qrCode;
+    this.timestamp = System.currentTimeMillis();
+    this.resultPoints = points;
   }
 
   public Result(String text,
