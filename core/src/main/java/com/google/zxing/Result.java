@@ -166,4 +166,7 @@ public final class Result {
     return text;
   }
 
+  public List<byte[]> getByteSegments() {
+    return byteSegments;
+  }
 }
